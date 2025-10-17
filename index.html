@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>HSC Powerplay 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #3a6bc9;
+            --accent: #e63946;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .bengali, .bengali-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+        }
+
+        .section-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-btn {
+            flex: 1;
+            padding: 18px;
+            background: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .section-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .section-btn i {
+            font-size: 1.3rem;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-type-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .content-type-btn {
+            flex: 1;
+            padding: 16px;
+            background: var(--light);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .content-type-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .content-type-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .content-list {
+            display: grid;
+            gap: 16px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .content-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .content-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .content-list::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 10px;
+        }
+
+        .content-item {
+            padding: 18px;
+            background: var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .content-item:hover {
+            transform: translateX(5px);
+            background: #e6f0ff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-item.pdf {
+            border-left-color: var(--accent);
+        }
+
+        .content-item.pdf:hover {
+            background: #ffeaea;
+        }
+
+        .item-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary);
+            color: white;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .content-item.pdf .item-icon {
+            background: var(--accent);
+        }
+
+        .item-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .bengali-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: var(--dark);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Video Popup Styles */
+        .video-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+            padding: 20px;
+        }
+
+        .video-popup-container {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .video-popup-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .video-popup-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .video-popup-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .section-selector {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-item {
+                padding: 16px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .video-popup-container {
+                width: 95%;
+            }
+            
+            .video-popup-title {
+                font-size: 1rem;
+            }
+            
+            .item-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .content-type-btn {
+                padding: 14px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .content-item {
+                padding: 14px;
+            }
+            
+            .item-icon {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+/* Disable blue highlight on touch for mobile devices */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* Control text selection behavior */
+.content-item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow text selection only in specific areas if needed */
+.video-popup-title,
+.item-title {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Improve touch interactions for mobile */
+.section-btn,
+.content-type-btn,
+.content-item {
+    touch-action: manipulation;
+}
+
+/* Optional: Add active state for better touch feedback */
+.section-btn:active,
+.content-type-btn:active,
+.content-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HSC Powerplay 2026</h1>
+            <p class="subtitle">Complete course materials for HSC 2026</p>
+        </header>
+
+        <div class="section-selector">
+            <button class="section-btn active" data-section="hsc">
+                <i class="fas fa-graduation-cap"></i>
+                <span>HSC Powerplay 2026</span>
+            </button>
+            <button class="section-btn" data-section="archive">
+                <i class="fas fa-archive"></i>
+                <span>Archive</span>
+            </button>
+        </div>
+
+        <!-- HSC Powerplay 2026 Section -->
+        <div class="content-section active" id="hsc-section">
+            <div class="content-type-selector">
+                <button class="content-type-btn active" data-type="classes">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Classes</span>
+                </button>
+                <button class="content-type-btn" data-type="materials">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Class Materials</span>
+                </button>
+            </div>
+
+            <div class="content-list" id="hsc-classes">
+                <!-- Classes will be dynamically added here -->
+            </div>
+
+            <div class="content-list" id="hsc-materials" style="display: none;">
+                <!-- Materials will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Archive Section -->
+        <div class="content-section" id="archive-section">
+            <div class="content-type-selector">
+                <button class="content-type-btn active" data-type="classes">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Classes</span>
+                </button>
+                <button class="content-type-btn" data-type="materials">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Class Materials</span>
+                </button>
+            </div>
+
+            <div class="content-list" id="archive-classes">
+                <!-- Classes will be dynamically added here -->
+            </div>
+
+            <div class="content-list" id="archive-materials" style="display: none;">
+                <!-- Materials will be dynamically here -->
+            </div>
+        </div>
+
+        <footer>
+            <p>If you are facing any problem, then please contact your admin.</p>
+        </footer>
+    </div>
+
+    <!-- Video Popup -->
+    <div class="video-popup-overlay" id="video-popup">
+        <div class="video-popup-container">
+            <div class="video-popup-header">
+                <h3 class="video-popup-title bengali" id="video-popup-title">ভিডিও লেকচার</h3>
+                <button class="video-popup-close" id="video-popup-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-container">
+                <iframe id="video-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the external data file -->
+    <script src="data.js"></script>
+    <script>
+    const password = "comeback2026"; // Change this
+    const enteredPassword = prompt("Enter password to access this content:");
+    if (enteredPassword !== password) {
+        document.body.innerHTML = "<h1 style='text-align:center;margin-top:50px;'>Access Denied</h1>";
+    }
+</script>
+    <!-- Main application logic -->
+    <script>
+        // Parse data from the string format
+        function parseData(dataString) {
+            const lines = dataString.trim().split('\n');
+            const result = [];
+            
+            for (const line of lines) {
+                const parts = line.split(': ');
+                if (parts.length >= 2) {
+                    const title = parts[0].trim();
+                    const link = parts.slice(1).join(': ').trim();
+                    result.push({ title, link });
+                }
+            }
+            
+            return result;
+        }
+
+        // Extract YouTube video ID from URL
+        function getYouTubeVideoId(url) {
+            // Handle youtu.be format
+            if (url.includes('youtu.be/')) {
+                return url.split('youtu.be/')[1];
+            }
+            
+            // Handle youtube.com format
+            const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[7].length === 11) ? match[7] : null;
+        }
+
+        // Data arrays (using data from external file)
+        const mainClass = parseData(mainClassData);
+        const mainPdf = parseData(mainPdfData);
+        const arcClass = parseData(arcClassData);
+        const arcPdf = parseData(arcPdfData);
+
+        // DOM elements
+        const sectionButtons = document.querySelectorAll('.section-btn');
+        const contentSections = document.querySelectorAll('.content-section');
+        const contentTypeButtons = document.querySelectorAll('.content-type-btn');
+        const contentLists = {
+            'hsc-classes': document.getElementById('hsc-classes'),
+            'hsc-materials': document.getElementById('hsc-materials'),
+            'archive-classes': document.getElementById('archive-classes'),
+            'archive-materials': document.getElementById('archive-materials')
+        };
+
+        // Video popup elements
+        const videoPopup = document.getElementById('video-popup');
+        const videoPopupTitle = document.getElementById('video-popup-title');
+        const videoPopupClose = document.getElementById('video-popup-close');
+        const videoIframe = document.getElementById('video-iframe');
+
+        // Initialize the content
+        function initializeContent() {
+            // Populate HSC Classes
+            populateContentList(mainClass, contentLists['hsc-classes'], false);
+            
+            // Populate HSC Materials
+            populateContentList(mainPdf, contentLists['hsc-materials'], true);
+            
+            // Populate Archive Classes
+            populateContentList(arcClass, contentLists['archive-classes'], false);
+            
+            // Populate Archive Materials
+            populateContentList(arcPdf, contentLists['archive-materials'], true);
+        }
+
+        // Populate a content list with items
+        function populateContentList(items, container, isPdf) {
+            container.innerHTML = '';
+            
+            if (items.length === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-state';
+                emptyState.innerHTML = `
+                    <i class="fas fa-${isPdf ? 'file-pdf' : 'play-circle'}"></i>
+                    <p class="bengali">${isPdf ? 'কোন উপকরণ পাওয়া যায়নি' : 'কোন ক্লাস পাওয়া যায়নি'}</p>
+                `;
+                container.appendChild(emptyState);
+                return;
+            }
+            
+            items.forEach(item => {
+                const itemElement = createContentItem(item, isPdf);
+                container.appendChild(itemElement);
+            });
+        }
+
+        // Create a content item element
+        function createContentItem(item, isPdf) {
+            const itemElement = document.createElement('div');
+            itemElement.className = `content-item ${isPdf ? 'pdf' : ''}`;
+            
+            const icon = document.createElement('div');
+            icon.className = 'item-icon';
+            if (isPdf) {
+                icon.innerHTML = '<i class="fas fa-file-pdf"></i>';
+            } else {
+                icon.innerHTML = '<i class="fas fa-play"></i>';
+            }
+            
+            const title = document.createElement('div');
+            title.className = 'item-title';
+            if (item.title.match(/[অ-হ]/)) {
+                title.classList.add('bengali-title');
+            }
+            title.textContent = item.title;
+            
+            itemElement.appendChild(icon);
+            itemElement.appendChild(title);
+            
+            // Handle click based on content type
+            if (isPdf) {
+                // PDFs open in new tab
+                itemElement.addEventListener('click', () => {
+                    window.open(item.link, '_blank');
+                });
+            } else {
+                // Videos open in popup
+                itemElement.addEventListener('click', () => {
+                    openVideoPopup(item.title, item.link);
+                });
+            }
+            
+            return itemElement;
+        }
+
+        // Open video popup with embedded YouTube player
+        function openVideoPopup(title, url) {
+            const videoId = getYouTubeVideoId(url);
+            
+            if (videoId) {
+                videoPopupTitle.textContent = title;
+                videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                videoPopup.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                // Fallback: open in new tab if URL is not a valid YouTube URL
+                window.open(url, '_blank');
+            }
+        }
+
+        // Close video popup
+        function closeVideoPopup() {
+            videoPopup.style.display = 'none';
+            videoIframe.src = '';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Section switching
+        sectionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetSection = button.getAttribute('data-section');
+                
+                // Update active button
+                sectionButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show target section
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === `${targetSection}-section`) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Content type switching
+        contentTypeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parentSection = button.closest('.content-section');
+                const targetType = button.getAttribute('data-type');
+                
+                // Update active button
+                parentSection.querySelectorAll('.content-type-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Show target content
+                const classesList = parentSection.querySelector('[id$="classes"]');
+                const materialsList = parentSection.querySelector('[id$="materials"]');
+                
+                if (targetType === 'classes') {
+                    classesList.style.display = 'grid';
+                    materialsList.style.display = 'none';
+                } else {
+                    classesList.style.display = 'none';
+                    materialsList.style.display = 'grid';
+                }
+            });
+        });
+
+        // Video popup event listeners
+        videoPopupClose.addEventListener('click', closeVideoPopup);
+        
+        // Close popup when clicking outside the video container
+        videoPopup.addEventListener('click', (e) => {
+            if (e.target === videoPopup) {
+                closeVideoPopup();
+            }
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoPopup.style.display === 'flex') {
+                closeVideoPopup();
+            }
+        });
+
+        // Initialize the page
+        initializeContent();
+    </script>
+</body>
+</html>
