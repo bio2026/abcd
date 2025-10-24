@@ -9,28 +9,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #1e3a5f;
-            --secondary: #3a6bc9;
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
             --accent: #e63946;
-            --light: #f8fafc;
-            --dark: #1e293b;
+            --accent-glow: rgba(230, 57, 70, 0.4);
+            --light: #2a2a2a;
+            --dark: #f8fafc;
             --success: #10b981;
             --warning: #f59e0b;
-            --gray: #64748b;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --gray: #94a3b8;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s ease;
             --radius: 12px;
+            --border-glow: 0 0 10px var(--accent-glow);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
@@ -47,12 +51,13 @@
             text-align: center;
             margin-bottom: 30px;
             padding: 30px 25px;
-            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            border: 1px solid #333;
         }
 
         header::before {
@@ -62,7 +67,8 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--accent), #ff6b6b);
+            box-shadow: var(--border-glow);
         }
 
         h1 {
@@ -70,6 +76,15 @@
             margin-bottom: 8px;
             font-weight: 700;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .verified-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
         }
 
         .subtitle {
@@ -92,8 +107,8 @@
         .section-btn {
             flex: 1;
             padding: 18px;
-            background: white;
-            border: none;
+            background: var(--secondary);
+            border: 1px solid #333;
             border-radius: var(--radius);
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
@@ -110,25 +125,32 @@
 
         .section-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            box-shadow: var(--border-glow);
+            border-color: var(--accent);
         }
 
         .section-btn.active {
-            background: var(--secondary);
+            background: var(--accent);
             color: white;
+            box-shadow: var(--border-glow);
         }
 
         .section-btn i {
             font-size: 1.3rem;
         }
 
+        .section-btn .btn-text {
+            display: inline-block;
+        }
+
         .content-section {
             display: none;
-            background: white;
+            background: var(--secondary);
             border-radius: var(--radius);
             padding: 30px;
             margin-bottom: 20px;
             box-shadow: var(--shadow);
+            border: 1px solid #333;
         }
 
         .content-section.active {
@@ -139,39 +161,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-type-selector {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .content-type-btn {
-            flex: 1;
-            padding: 16px;
-            background: var(--light);
-            border: none;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--dark);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .content-type-btn:hover {
-            background: #e2e8f0;
-        }
-
-        .content-type-btn.active {
-            background: var(--secondary);
-            color: white;
         }
 
         .content-list {
@@ -187,12 +176,12 @@
         }
 
         .content-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #333;
             border-radius: 10px;
         }
 
         .content-list::-webkit-scrollbar-thumb {
-            background: var(--secondary);
+            background: var(--accent);
             border-radius: 10px;
         }
 
@@ -205,21 +194,32 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--accent);
+            border: 1px solid #444;
+            position: relative;
         }
 
         .content-item:hover {
             transform: translateX(5px);
-            background: #e6f0ff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            background: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+
+        .content-item.completed {
+            border-left-color: var(--success);
+        }
+
+        .content-item.completed:hover {
+            background: #1a2e1a;
         }
 
         .content-item.pdf {
-            border-left-color: var(--accent);
+            border-left-color: #f59e0b;
         }
 
         .content-item.pdf:hover {
-            background: #ffeaea;
+            background: #2a241a;
         }
 
         .item-icon {
@@ -228,26 +228,49 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--secondary);
+            background: var(--accent);
             color: white;
             border-radius: 8px;
             font-size: 1.1rem;
             flex-shrink: 0;
         }
 
+        .content-item.completed .item-icon {
+            background: var(--success);
+        }
+
         .content-item.pdf .item-icon {
-            background: var(--accent);
+            background: #f59e0b;
         }
 
         .item-title {
             font-size: 0.95rem;
             font-weight: 700;
             line-height: 1.4;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+            flex: 1;
         }
 
         .bengali-title {
             font-family: 'Hind Siliguri', sans-serif;
             font-weight: 700;
+        }
+
+        .download-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-left: auto;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .download-icon:hover {
+            background: rgba(230, 57, 70, 0.2);
+            transform: scale(1.1);
         }
 
         .no-results {
@@ -287,7 +310,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
@@ -300,10 +323,11 @@
             position: relative;
             width: 90%;
             max-width: 900px;
-            background: white;
+            background: var(--secondary);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
         }
 
         .video-popup-header {
@@ -313,6 +337,7 @@
             padding: 18px 20px;
             background: var(--primary);
             color: white;
+            border-bottom: 1px solid #444;
         }
 
         .video-popup-title {
@@ -338,7 +363,7 @@
         }
 
         .video-popup-close:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .video-container {
@@ -357,9 +382,197 @@
             border: none;
         }
 
+        /* Security Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: var(--secondary);
+            border-radius: var(--radius);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border: 1px solid #444;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .modal-subtitle {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background: var(--light);
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: var(--border-glow);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 14px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #c1121f;
+            box-shadow: var(--border-glow);
+        }
+
+        .btn-secondary {
+            background: var(--light);
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+        }
+
+        /* Custom Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-container {
+            background: var(--secondary);
+            border-radius: var(--radius);
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        .popup-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .popup-message {
+            margin-bottom: 25px;
+            color: var(--gray);
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .popup-btn.confirm {
+            background: var(--success);
+            color: white;
+        }
+
+        .popup-btn.confirm:hover {
+            background: #0da271;
+        }
+
+        .popup-btn.cancel {
+            background: var(--light);
+            color: white;
+        }
+
+        .popup-btn.cancel:hover {
+            background: #333;
+        }
+
         @media (max-width: 768px) {
             .section-selector {
-                flex-direction: column;
+                flex-direction: row;
+            }
+            
+            .section-btn {
+                padding: 12px;
+            }
+            
+            .section-btn .btn-text {
+                display: none;
             }
             
             h1 {
@@ -385,6 +598,18 @@
             .item-title {
                 font-size: 0.9rem;
             }
+            
+            .modal-container {
+                padding: 20px;
+            }
+            
+            .popup-container {
+                padding: 20px;
+            }
+            
+            .popup-buttons {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -408,11 +633,6 @@
                 font-size: 0.95rem;
             }
             
-            .content-type-btn {
-                padding: 14px 10px;
-                font-size: 0.9rem;
-            }
-            
             .content-item {
                 padding: 14px;
             }
@@ -423,110 +643,107 @@
             }
         }
 
-/* Disable blue highlight on touch for mobile devices */
-* {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
+        /* Improved touch interactions for mobile */
+        .section-btn,
+        .content-item,
+        .btn {
+            touch-action: manipulation;
+        }
+
+        /* Active state for better touch feedback */
+        .section-btn:active,
+        .content-item:active,
+        .btn:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        /* Loading indicator */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+@media (max-width: 768px) {
+    .content-list {
+        max-height: 530px !important; /* Increased from 450px */
+    }
 }
 
-/* Control text selection behavior */
-.content-item {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Allow text selection only in specific areas if needed */
-.video-popup-title,
-.item-title {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-/* Improve touch interactions for mobile */
-.section-btn,
-.content-type-btn,
-.content-item {
-    touch-action: manipulation;
-}
-
-/* Optional: Add active state for better touch feedback */
-.section-btn:active,
-.content-type-btn:active,
-.content-item:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
+@media (max-width: 480px) {
+    .content-list {
+        max-height: 580px !important; /* Even taller for smaller screens */
+    }
 }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome to HSC Powerplay 2026</h2>
+                <p class="modal-subtitle">Enter your name and access code to continue</p>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="full-name">Full Name</label>
+                <input type="text" id="full-name" class="form-input" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="access-code">Access Code</label>
+                <input type="text" id="access-code" class="form-input" placeholder="Enter your access code">
+            </div>
+            <button class="btn" id="login-btn">
+                Continue <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until verified) -->
+    <div class="container" id="main-content" style="display: none;">
         <header>
-            <h1>HSC Powerplay 2026</h1>
-            <p class="subtitle">Complete course materials for HSC 2026</p>
+            <h1>HSC Powerplay 2026 <i class="fas fa-check-circle verified-icon"></i></h1>
+            <p class="subtitle bengali">এইচএসসি ২০২৬ প্রস্তুতির জন্য প্রিমিয়াম লেকচার ও উপকরণ</p>
         </header>
 
         <div class="section-selector">
-            <button class="section-btn active" data-section="hsc">
-                <i class="fas fa-graduation-cap"></i>
-                <span>HSC Powerplay 2026</span>
+            <button class="section-btn active" data-section="lectures">
+                <i class="fas fa-play-circle"></i>
+                <span class="btn-text">Lectures</span>
             </button>
-            <button class="section-btn" data-section="archive">
-                <i class="fas fa-archive"></i>
-                <span>Archive</span>
+            <button class="section-btn" data-section="materials">
+                <i class="fas fa-file-pdf"></i>
+                <span class="btn-text">Materials</span>
             </button>
         </div>
 
-        <!-- HSC Powerplay 2026 Section -->
-        <div class="content-section active" id="hsc-section">
-            <div class="content-type-selector">
-                <button class="content-type-btn active" data-type="classes">
+        <!-- Lectures Section -->
+        <div class="content-section active" id="lectures-section">
+            <div class="content-list" id="lectures-list">
+                <div class="empty-state">
                     <i class="fas fa-play-circle"></i>
-                    <span>Classes</span>
-                </button>
-                <button class="content-type-btn" data-type="materials">
-                    <i class="fas fa-file-pdf"></i>
-                    <span>Class Materials</span>
-                </button>
-            </div>
-
-            <div class="content-list" id="hsc-classes">
-                <!-- Classes will be dynamically added here -->
-            </div>
-
-            <div class="content-list" id="hsc-materials" style="display: none;">
-                <!-- Materials will be dynamically added here -->
+                    <p>Loading lectures...</p>
+                </div>
             </div>
         </div>
 
-        <!-- Archive Section -->
-        <div class="content-section" id="archive-section">
-            <div class="content-type-selector">
-                <button class="content-type-btn active" data-type="classes">
-                    <i class="fas fa-play-circle"></i>
-                    <span>Classes</span>
-                </button>
-                <button class="content-type-btn" data-type="materials">
+        <!-- Materials Section -->
+        <div class="content-section" id="materials-section">
+            <div class="content-list" id="materials-list">
+                <div class="empty-state">
                     <i class="fas fa-file-pdf"></i>
-                    <span>Class Materials</span>
-                </button>
-            </div>
-
-            <div class="content-list" id="archive-classes">
-                <!-- Classes will be dynamically added here -->
-            </div>
-
-            <div class="content-list" id="archive-materials" style="display: none;">
-                <!-- Materials will be dynamically here -->
+                    <p>Loading materials...</p>
+                </div>
             </div>
         </div>
-
-        <footer>
-            <p>If you are facing any problem, then please contact your admin.</p>
-        </footer>
     </div>
 
     <!-- Video Popup -->
@@ -544,17 +761,23 @@
         </div>
     </div>
 
+    <!-- Custom Popup -->
+    <div class="popup-overlay" id="completion-popup">
+        <div class="popup-container">
+            <h3 class="popup-title">Mark as Completed</h3>
+            <p class="popup-message">Do you want to mark this lecture as completed?</p>
+            <div class="popup-buttons">
+                <button class="popup-btn confirm" id="confirm-completion">Yes, Mark Complete</button>
+                <button class="popup-btn cancel" id="cancel-completion">No, Not Yet</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Include the external data file -->
-    <script src="data.js"></script>
-    <script>
-    const password = "comeback2026"; // Change this
-    const enteredPassword = prompt("Enter password to access this content:");
-    if (enteredPassword !== password) {
-        document.body.innerHTML = "<h1 style='text-align:center;margin-top:50px;'>Access Denied</h1>";
-    }
-</script>
-    <!-- Main application logic -->
-    <script>
+    <script src="data.js"></script>    <script>
+        // Security Configuration
+        const VALID_ACCESS_CODES = ["POWER2026", "HSC2026BOND", "COMEBACK2026"];
+
         // Parse data from the string format
         function parseData(dataString) {
             const lines = dataString.trim().split('\n');
@@ -588,18 +811,19 @@
         // Data arrays (using data from external file)
         const mainClass = parseData(mainClassData);
         const mainPdf = parseData(mainPdfData);
-        const arcClass = parseData(arcClassData);
-        const arcPdf = parseData(arcPdfData);
 
         // DOM elements
+        const loginModal = document.getElementById('login-modal');
+        const mainContent = document.getElementById('main-content');
+        const loginBtn = document.getElementById('login-btn');
+        const fullNameInput = document.getElementById('full-name');
+        const accessCodeInput = document.getElementById('access-code');
+        
         const sectionButtons = document.querySelectorAll('.section-btn');
         const contentSections = document.querySelectorAll('.content-section');
-        const contentTypeButtons = document.querySelectorAll('.content-type-btn');
         const contentLists = {
-            'hsc-classes': document.getElementById('hsc-classes'),
-            'hsc-materials': document.getElementById('hsc-materials'),
-            'archive-classes': document.getElementById('archive-classes'),
-            'archive-materials': document.getElementById('archive-materials')
+            'lectures': document.getElementById('lectures-list'),
+            'materials': document.getElementById('materials-list')
         };
 
         // Video popup elements
@@ -608,19 +832,81 @@
         const videoPopupClose = document.getElementById('video-popup-close');
         const videoIframe = document.getElementById('video-iframe');
 
+        // Completion popup elements
+        const completionPopup = document.getElementById('completion-popup');
+        const confirmCompletionBtn = document.getElementById('confirm-completion');
+        const cancelCompletionBtn = document.getElementById('cancel-completion');
+
+        // User data
+        let userData = {
+            name: '',
+            accessCode: '',
+            verified: false
+        };
+
+        // User completions
+        let currentUserVideoIds = [];
+
+        // Track current video for completion
+        let currentVideoId = null;
+
+        // Initialize the application
+        function initializeApp() {
+            // Check if user is already verified
+            const storedUserData = localStorage.getItem('hscPowerplayUser');
+            if (storedUserData) {
+                const parsedData = JSON.parse(storedUserData);
+                if (parsedData.verified) {
+                    userData = parsedData;
+                    showMainContent();
+                    return;
+                }
+            }
+            
+            // Show login modal
+            loginModal.style.display = 'flex';
+        }
+
+        // Show main content
+        function showMainContent() {
+            loginModal.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Load completion data from localStorage
+            loadCompletionData();
+            
+            // Initialize content
+            initializeContent();
+        }
+
+        // Load completion data from localStorage
+        function loadCompletionData() {
+            const completionData = JSON.parse(localStorage.getItem('completionData') || '{}');
+            
+            if (userData.name && completionData[userData.name]) {
+                currentUserVideoIds = completionData[userData.name].videoIds || [];
+            }
+        }
+
+        // Save completion data to localStorage
+        function saveCompletionData() {
+            const completionData = JSON.parse(localStorage.getItem('completionData') || '{}');
+            
+            if (!completionData[userData.name]) {
+                completionData[userData.name] = { videoIds: [] };
+            }
+            
+            completionData[userData.name].videoIds = currentUserVideoIds;
+            localStorage.setItem('completionData', JSON.stringify(completionData));
+        }
+
         // Initialize the content
         function initializeContent() {
-            // Populate HSC Classes
-            populateContentList(mainClass, contentLists['hsc-classes'], false);
+            // Populate Lectures
+            populateContentList(mainClass, contentLists['lectures'], false);
             
-            // Populate HSC Materials
-            populateContentList(mainPdf, contentLists['hsc-materials'], true);
-            
-            // Populate Archive Classes
-            populateContentList(arcClass, contentLists['archive-classes'], false);
-            
-            // Populate Archive Materials
-            populateContentList(arcPdf, contentLists['archive-materials'], true);
+            // Populate Materials
+            populateContentList(mainPdf, contentLists['materials'], true);
         }
 
         // Populate a content list with items
@@ -638,21 +924,29 @@
                 return;
             }
             
-            items.forEach(item => {
-                const itemElement = createContentItem(item, isPdf);
+            items.forEach((item, index) => {
+                const itemElement = createContentItem(item, isPdf, index);
                 container.appendChild(itemElement);
             });
         }
 
         // Create a content item element
-        function createContentItem(item, isPdf) {
+        function createContentItem(item, isPdf, index) {
             const itemElement = document.createElement('div');
             itemElement.className = `content-item ${isPdf ? 'pdf' : ''}`;
+            
+            // Check if this lecture is completed
+            const videoId = isPdf ? null : getYouTubeVideoId(item.link);
+            if (!isPdf && videoId && currentUserVideoIds.includes(videoId)) {
+                itemElement.classList.add('completed');
+            }
             
             const icon = document.createElement('div');
             icon.className = 'item-icon';
             if (isPdf) {
                 icon.innerHTML = '<i class="fas fa-file-pdf"></i>';
+            } else if (videoId && currentUserVideoIds.includes(videoId)) {
+                icon.innerHTML = '<i class="fas fa-check"></i>';
             } else {
                 icon.innerHTML = '<i class="fas fa-play"></i>';
             }
@@ -667,8 +961,13 @@
             itemElement.appendChild(icon);
             itemElement.appendChild(title);
             
-            // Handle click based on content type
+            // Add download icon for PDF items
             if (isPdf) {
+                const downloadIcon = document.createElement('i');
+                downloadIcon.className = 'fas fa-download download-icon';
+                downloadIcon.title = 'Download PDF';
+                itemElement.appendChild(downloadIcon);
+                
                 // PDFs open in new tab
                 itemElement.addEventListener('click', () => {
                     window.open(item.link, '_blank');
@@ -676,7 +975,7 @@
             } else {
                 // Videos open in popup
                 itemElement.addEventListener('click', () => {
-                    openVideoPopup(item.title, item.link);
+                    openVideoPopup(item.title, item.link, index);
                 });
             }
             
@@ -684,7 +983,7 @@
         }
 
         // Open video popup with embedded YouTube player
-        function openVideoPopup(title, url) {
+        function openVideoPopup(title, url, index) {
             const videoId = getYouTubeVideoId(url);
             
             if (videoId) {
@@ -692,18 +991,100 @@
                 videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
                 videoPopup.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // Store the current video ID for marking as completed
+                currentVideoId = videoId;
             } else {
                 // Fallback: open in new tab if URL is not a valid YouTube URL
                 window.open(url, '_blank');
             }
         }
 
-        // Close video popup
+        // Close video popup and ask if user wants to mark as completed
         function closeVideoPopup() {
-            videoPopup.style.display = 'none';
-            videoIframe.src = '';
-            document.body.style.overflow = ''; // Restore scrolling
+            const videoId = currentVideoId;
+            
+            // Only ask if this is a video (not PDF) and not already completed
+            if (videoId && !currentUserVideoIds.includes(videoId)) {
+                showCompletionPopup();
+            } else {
+                videoPopup.style.display = 'none';
+                videoIframe.src = '';
+                document.body.style.overflow = ''; // Restore scrolling
+                currentVideoId = null;
+            }
         }
+
+        // Show custom completion popup
+        function showCompletionPopup() {
+            completionPopup.style.display = 'flex';
+        }
+
+        // Hide completion popup
+        function hideCompletionPopup() {
+            completionPopup.style.display = 'none';
+        }
+
+        // Mark a lecture as completed
+        function markLectureAsCompleted(videoId) {
+            if (!currentUserVideoIds.includes(videoId)) {
+                // Add to local tracking
+                currentUserVideoIds.push(videoId);
+                
+                // Save to localStorage
+                saveCompletionData();
+                
+                // Update the UI immediately
+                updateUserProgress();
+            }
+        }
+
+        // Update user progress in the UI
+        function updateUserProgress() {
+            const lecturesList = document.getElementById('lectures-list');
+            const lectureItems = lecturesList.querySelectorAll('.content-item');
+            
+            lectureItems.forEach((item, index) => {
+                const videoLink = mainClass[index].link;
+                const videoId = getYouTubeVideoId(videoLink);
+                
+                if (videoId && currentUserVideoIds.includes(videoId)) {
+                    item.classList.add('completed');
+                    const icon = item.querySelector('.item-icon');
+                    icon.innerHTML = '<i class="fas fa-check"></i>';
+                    icon.style.background = 'var(--success)';
+                }
+            });
+        }
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => {
+            const fullName = fullNameInput.value.trim();
+            const accessCode = accessCodeInput.value.trim();
+            
+            if (!fullName) {
+                alert('Please enter your full name');
+                return;
+            }
+            
+            if (!accessCode) {
+                alert('Please enter the access code');
+                return;
+            }
+            
+            if (VALID_ACCESS_CODES.includes(accessCode)) {
+                userData.name = fullName;
+                userData.accessCode = accessCode;
+                userData.verified = true;
+                
+                // Save user data to localStorage
+                localStorage.setItem('hscPowerplayUser', JSON.stringify(userData));
+                
+                showMainContent();
+            } else {
+                alert('Invalid access code. Please try again.');
+            }
+        });
 
         // Section switching
         sectionButtons.forEach(button => {
@@ -724,32 +1105,6 @@
             });
         });
 
-        // Content type switching
-        contentTypeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const parentSection = button.closest('.content-section');
-                const targetType = button.getAttribute('data-type');
-                
-                // Update active button
-                parentSection.querySelectorAll('.content-type-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                button.classList.add('active');
-                
-                // Show target content
-                const classesList = parentSection.querySelector('[id$="classes"]');
-                const materialsList = parentSection.querySelector('[id$="materials"]');
-                
-                if (targetType === 'classes') {
-                    classesList.style.display = 'grid';
-                    materialsList.style.display = 'none';
-                } else {
-                    classesList.style.display = 'none';
-                    materialsList.style.display = 'grid';
-                }
-            });
-        });
-
         // Video popup event listeners
         videoPopupClose.addEventListener('click', closeVideoPopup);
         
@@ -767,8 +1122,28 @@
             }
         });
 
-        // Initialize the page
-        initializeContent();
+        // Completion popup event listeners
+        confirmCompletionBtn.addEventListener('click', () => {
+            hideCompletionPopup();
+            if (currentVideoId) {
+                markLectureAsCompleted(currentVideoId);
+            }
+            videoPopup.style.display = 'none';
+            videoIframe.src = '';
+            document.body.style.overflow = '';
+            currentVideoId = null;
+        });
+
+        cancelCompletionBtn.addEventListener('click', () => {
+            hideCompletionPopup();
+            videoPopup.style.display = 'none';
+            videoIframe.src = '';
+            document.body.style.overflow = '';
+            currentVideoId = null;
+        });
+
+        // Initialize the app
+        initializeApp();
     </script>
 </body>
 </html>
