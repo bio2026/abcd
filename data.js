@@ -1,5 +1,4 @@
-        // Data for the course index in the requested format
-        const mainClassData = `
+const mainClassData = `
 সংখ্যা পদ্ধতি - পর্ব  ০১: https://youtu.be/VR3Zg7PkjxM
 সংখ্যা পদ্ধতি - পর্ব ০২: https://youtu.be/N7AMgDSwd6c
 সংখ্যাপদ্ধতি - পর্ব ০৩: https://youtu.be/0sL90cKK3pM
@@ -667,3 +666,4 @@ Writing Part: https://pdf.bondipathshala.education/1758714095546.pdf
 নগ্নবীজী ও আবৃতবীজী উদ্ভিদ - পর্ব ১.২: https://pdf.bondipathshala.education/1758918211256.pdf
 
 `;
+
