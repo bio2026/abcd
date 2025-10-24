@@ -1,13 +1,5 @@
         // Data for the course index in the requested format
         const mainClassData = `
-
-`;
-
-        const mainPdfData = `
-
-`;
-
-        const arcClassData = `
 সংখ্যা পদ্ধতি - পর্ব  ০১: https://youtu.be/VR3Zg7PkjxM
 সংখ্যা পদ্ধতি - পর্ব ০২: https://youtu.be/N7AMgDSwd6c
 সংখ্যাপদ্ধতি - পর্ব ০৩: https://youtu.be/0sL90cKK3pM
@@ -350,7 +342,7 @@ Magnetism - Part 08: https://youtu.be/H9A58UzuXak
 বিদ্রোহী: https://youtu.be/YwRE4xAXUBU
 `;
 
-        const arcPdfData = `
+        const mainPdfData = `
 জৈব যৌগ - পর্ব ০৩: https://pdf.bondipathshala.education/1758825452462.pdf
 জৈব যৌগ - পর্ব ০৪: https://pdf.bondipathshala.education/1758825480443.pdf
 জৈব যৌগ - পর্ব ০৭: https://pdf.bondipathshala.education/1758825639551.pdf
@@ -673,4 +665,5 @@ Writing Part: https://pdf.bondipathshala.education/1758714095546.pdf
 যোগজীকরণ - পর্ব ০৩: https://pdf.bondipathshala.education/1758917697223.pdf
 যোগজীকরণ - MCQ Solving: https://pdf.bondipathshala.education/1758917751983.pdf
 নগ্নবীজী ও আবৃতবীজী উদ্ভিদ - পর্ব ১.২: https://pdf.bondipathshala.education/1758918211256.pdf
+
 `;
